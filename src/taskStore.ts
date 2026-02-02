@@ -6,7 +6,7 @@ export interface Task {
 
 // In-memory store
 let tasks: Task[] = [
-  { id: 1, title: "Understand CI Stages", done: false },
+  { id: 1, title: "Understand CI Basics - main branch", done: false },
   { id: 2, title: "Fix the Failing Test", done: false },
   { id: 3, title: "Review the Dockerfile", done: true },
 ];
@@ -23,14 +23,16 @@ export const getTasks = (): Task[] => tasks;
  */
 export const addTask = (title: string): Task | null => {
   // BUG is here: does not use .trim()
-  if (!title) {
-    return null; // Reject empty titles
+  if (!title || title.trim().length === 0) {
+    return null; // Reject empty or whitespace-only titles
   }
+
   const newTask: Task = {
     id: nextId++,
-    title: title,
+    title: title.trim(),
     done: false,
   };
+
   tasks.push(newTask);
   return newTask;
 };
