@@ -30,3 +30,6 @@ jobs:
         with:
           name: test-results
           path: .
+
+      - name: Build Docker image
+        run: docker build -t tinytask:ci .
