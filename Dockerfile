@@ -7,12 +7,15 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
+COPY tsconfig.json ./
+
 
 # Install dependencies using npm ci for reproducible builds
 RUN npm ci
 
 # Copy the rest of the application source code
-COPY . .
+COPY src ./src
+COPY public ./public
 
 # Build the TypeScript application
 RUN npx tsc -p tsconfig.json
