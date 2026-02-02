@@ -16,8 +16,9 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 // API Routes
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+  res.status(200).json({ status: 'ok' });
 });
+
 
 app.get('/tasks', (req, res) => {
   res.json(taskStore.getTasks());
